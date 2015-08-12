@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+  resources :references_snaks
+
+  resources :references
+
+  resources :qualifiers
+
+  resources :sitelinks
+
+  resources :claims
+
+  resources :descriptions
+
+  resources :labels
+
+  resources :aliases
+
+  resources :entities
+
+  resources :tests
+
   #Ruta para descargar pdfs
   resources :usuarios do
     member do

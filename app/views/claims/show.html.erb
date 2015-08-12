@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Aid:</strong>
+  <%= @claim.aid %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @claim.type %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @claim.rank %>
+</p>
+
+<p>
+  <strong>Snaktype:</strong>
+  <%= @claim.snaktype %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @claim.property %>
+</p>
+
+<p>
+  <strong>Value string:</strong>
+  <%= @claim.value_string %>
+</p>
+
+<p>
+  <strong>Value item:</strong>
+  <%= @claim.value_item %>
+</p>
+
+<p>
+  <strong>Value type:</strong>
+  <%= @claim.value_type %>
+</p>
+
+<p>
+  <strong>Datatype:</strong>
+  <%= @claim.datatype %>
+</p>
+
+<%= link_to 'Edit', edit_claim_path(@claim) %> |
+<%= link_to 'Back', claims_path %>

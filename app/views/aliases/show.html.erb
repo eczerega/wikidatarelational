@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Aid:</strong>
+  <%= @alias.aid %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @alias.language %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @alias.value %>
+</p>
+
+<%= link_to 'Edit', edit_alias_path(@alias) %> |
+<%= link_to 'Back', aliases_path %>

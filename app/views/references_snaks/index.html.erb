@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing References Snaks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Snak</th>
+      <th>Snaktype</th>
+      <th>Property</th>
+      <th>Datatype</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @references_snaks.each do |references_snak| %>
+      <tr>
+        <td><%= references_snak.snak %></td>
+        <td><%= references_snak.snaktype %></td>
+        <td><%= references_snak.property %></td>
+        <td><%= references_snak.datatype %></td>
+        <td><%= link_to 'Show', references_snak %></td>
+        <td><%= link_to 'Edit', edit_references_snak_path(references_snak) %></td>
+        <td><%= link_to 'Destroy', references_snak, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New References snak', new_references_snak_path %>

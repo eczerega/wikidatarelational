@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hash:</strong>
+  <%= @qualifier.hash %>
+</p>
+
+<p>
+  <strong>Snaktype:</strong>
+  <%= @qualifier.snaktype %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @qualifier.property %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @qualifier.value %>
+</p>
+
+<p>
+  <strong>Value type:</strong>
+  <%= @qualifier.value_type %>
+</p>
+
+<p>
+  <strong>Datatype:</strong>
+  <%= @qualifier.datatype %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @qualifier.order %>
+</p>
+
+<%= link_to 'Edit', edit_qualifier_path(@qualifier) %> |
+<%= link_to 'Back', qualifiers_path %>

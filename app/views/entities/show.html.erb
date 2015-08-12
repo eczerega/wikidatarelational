@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pageid:</strong>
+  <%= @entity.pageid %>
+</p>
+
+<p>
+  <strong>Ns:</strong>
+  <%= @entity.ns %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @entity.title %>
+</p>
+
+<p>
+  <strong>Lastrevid:</strong>
+  <%= @entity.lastrevid %>
+</p>
+
+<p>
+  <strong>Modified:</strong>
+  <%= @entity.modified %>
+</p>
+
+<p>
+  <strong>Eid:</strong>
+  <%= @entity.eid %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @entity.type %>
+</p>
+
+<p>
+  <strong>Property datatype:</strong>
+  <%= @entity.property_datatype %>
+</p>
+
+<%= link_to 'Edit', edit_entity_path(@entity) %> |
+<%= link_to 'Back', entities_path %>

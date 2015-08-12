@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Snak:</strong>
+  <%= @reference.snak %>
+</p>
+
+<p>
+  <strong>Hash:</strong>
+  <%= @reference.hash %>
+</p>
+
+<%= link_to 'Edit', edit_reference_path(@reference) %> |
+<%= link_to 'Back', references_path %>

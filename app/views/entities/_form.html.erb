@@ -1,0 +1,49 @@
+<%= form_for(@entity) do |f| %>
+  <% if @entity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entity.errors.count, "error") %> prohibited this entity from being saved:</h2>
+
+      <ul>
+      <% @entity.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :pageid %><br>
+    <%= f.text_field :pageid %>
+  </div>
+  <div class="field">
+    <%= f.label :ns %><br>
+    <%= f.text_field :ns %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :lastrevid %><br>
+    <%= f.text_field :lastrevid %>
+  </div>
+  <div class="field">
+    <%= f.label :modified %><br>
+    <%= f.text_field :modified %>
+  </div>
+  <div class="field">
+    <%= f.label :eid %><br>
+    <%= f.text_field :eid %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :property_datatype %><br>
+    <%= f.text_field :property_datatype %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

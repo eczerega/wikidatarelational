@@ -1,0 +1,53 @@
+<%= form_for(@claim) do |f| %>
+  <% if @claim.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@claim.errors.count, "error") %> prohibited this claim from being saved:</h2>
+
+      <ul>
+      <% @claim.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :aid %><br>
+    <%= f.text_field :aid %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :rank %><br>
+    <%= f.text_field :rank %>
+  </div>
+  <div class="field">
+    <%= f.label :snaktype %><br>
+    <%= f.text_field :snaktype %>
+  </div>
+  <div class="field">
+    <%= f.label :property %><br>
+    <%= f.text_field :property %>
+  </div>
+  <div class="field">
+    <%= f.label :value_string %><br>
+    <%= f.text_field :value_string %>
+  </div>
+  <div class="field">
+    <%= f.label :value_item %><br>
+    <%= f.text_field :value_item %>
+  </div>
+  <div class="field">
+    <%= f.label :value_type %><br>
+    <%= f.text_field :value_type %>
+  </div>
+  <div class="field">
+    <%= f.label :datatype %><br>
+    <%= f.text_field :datatype %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,23 +1,366 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1>My First Bootstrap Page</h1>
-    <p>Resize this responsive page to see the effect!</p>
-  </div>
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 3</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-  </div>
+
+  <div class="container">
+    <h1>Relational database</h1>
+    <p>Wikidata JSON entities modeling in relational tables:</p>
+
+
+
+
+    <div class="tabbable">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#pane1" data-toggle="tab">Add entity</a></li>
+        <li><a href="#pane2" data-toggle="tab">SQL </a></li>
+        <li><a href="#pane3" data-toggle="tab">Entity </a></li>
+        <li><a href="#pane4" data-toggle="tab">Label</a></li>
+        <li><a href="#pane5" data-toggle="tab">Description</a></li>
+        <li><a href="#pane6" data-toggle="tab">Aliases</a></li>
+        <li><a href="#pane7" data-toggle="tab">Claims</a></li>
+        <li><a href="#pane8" data-toggle="tab">Qualifiers</a></li>
+        <li><a href="#pane9" data-toggle="tab">References</a></li>
+        <li><a href="#pane10" data-toggle="tab">References_s</a></li>
+        <li><a href="#pane11" data-toggle="tab">Sitelinks</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="pane1" class="tab-pane active">
+
+          <div class="jumbotron">
+
+
+            <h2>Add entity:</h2>
+            <p>Insert a new entity ID (property or item) in the form. (Example: P18) </p>
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Entity ID:</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="email" placeholder="P18">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+              </div>
+            </form>
+
+
+          </div>
+
+
+
+
+        </div>
+        <div id="pane2" class="tab-pane">
+          <div class="jumbotron">
+
+
+            <h2>SQL interpreter:</h2>
+            <p>Write a SQL query </p>
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Query:</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="email" placeholder="SELECT FROM WHERE">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+        <div id="pane3" class="tab-pane">
+        <div class="jumbotron">
+        <h3>Entity</h3>
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>Pageid</th>
+              <th>Ns</th>
+              <th>Title</th>
+              <th>Lastrevid</th>
+              <th>Modified</th>
+              <th>Eid</th>
+              <th>Type</th>
+              <th>Property datatype</th>
+              <th colspan="3"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @entities.each do |entity| %>
+                <tr>
+                  <td><%= entity.pageid %></td>
+                  <td><%= entity.ns %></td>
+                  <td><%= entity.title %></td>
+                  <td><%= entity.lastrevid %></td>
+                  <td><%= entity.modified %></td>
+                  <td><%= entity.eid %></td>
+                  <td><%= entity.type %></td>
+                  <td><%= entity.property_datatype %></td>
+                  <td><%= link_to 'Show', entity %></td>
+                  <td><%= link_to 'Edit', edit_entity_path(entity) %></td>
+                  <td><%= link_to 'Destroy', entity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        </div>
+        <div id="pane4" class="tab-pane">
+
+          <div class="jumbotron">
+            <h3>Label</h3>
+
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Aid</th>
+                <th>Language</th>
+                <th>Value</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @labels.each do |label| %>
+                  <tr>
+                    <td><%= label.aid %></td>
+                    <td><%= label.language %></td>
+                    <td><%= label.value %></td>
+                    <td><%= link_to 'Show', label %></td>
+                    <td><%= link_to 'Edit', edit_label_path(label) %></td>
+                    <td><%= link_to 'Destroy', label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="pane5" class="tab-pane">
+          <div class="jumbotron">
+            <h3>Description</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Aid</th>
+                <th>Language</th>
+                <th>Value</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @descriptions.each do |description| %>
+                  <tr>
+                    <td><%= description.aid %></td>
+                    <td><%= description.language %></td>
+                    <td><%= description.value %></td>
+                    <td><%= link_to 'Show', description %></td>
+                    <td><%= link_to 'Edit', edit_description_path(description) %></td>
+                    <td><%= link_to 'Destroy', description, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div id="pane6" class="tab-pane">
+          <div class="jumbotron">
+            <h3>Aliases</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Aid</th>
+                <th>Language</th>
+                <th>Value</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @aliases.each do |aliasd| %>
+                  <tr>
+                    <td><%= aliasd.aid %></td>
+                    <td><%= aliasd.language %></td>
+                    <td><%= aliasd.value %></td>
+                    <td><%= link_to 'Show', aliasd %></td>
+                    <td><%= link_to 'Edit', edit_alias_path(aliasd) %></td>
+                    <td><%= link_to 'Destroy', aliasd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="pane7" class="tab-pane">
+          <div class="jumbotron">
+            <h3>Claims</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Aid</th>
+                <th>Type</th>
+                <th>Rank</th>
+                <th>Snaktype</th>
+                <th>Property</th>
+                <th>Value string</th>
+                <th>Value item</th>
+                <th>Value type</th>
+                <th>Datatype</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @claims.each do |claim| %>
+                  <tr>
+                    <td><%= claim.aid %></td>
+                    <td><%= claim.type %></td>
+                    <td><%= claim.rank %></td>
+                    <td><%= claim.snaktype %></td>
+                    <td><%= claim.property %></td>
+                    <td><%= claim.value_string %></td>
+                    <td><%= claim.value_item %></td>
+                    <td><%= claim.value_type %></td>
+                    <td><%= claim.datatype %></td>
+                    <td><%= link_to 'Show', claim %></td>
+                    <td><%= link_to 'Edit', edit_claim_path(claim) %></td>
+                    <td><%= link_to 'Destroy', claim, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="pane8" class="tab-pane">
+          <div class="jumbotron">
+            <h3>Qualifiers</h3>
+
+
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Hash</th>
+                <th>Snaktype</th>
+                <th>Property</th>
+                <th>Value</th>
+                <th>Value type</th>
+                <th>Datatype</th>
+                <th>Order</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @qualifiers.each do |qualifier| %>
+                  <tr>
+                    <td><%= qualifier.hash %></td>
+                    <td><%= qualifier.snaktype %></td>
+                    <td><%= qualifier.property %></td>
+                    <td><%= qualifier.value %></td>
+                    <td><%= qualifier.value_type %></td>
+                    <td><%= qualifier.datatype %></td>
+                    <td><%= qualifier.order %></td>
+                    <td><%= link_to 'Show', qualifier %></td>
+                    <td><%= link_to 'Edit', edit_qualifier_path(qualifier) %></td>
+                    <td><%= link_to 'Destroy', qualifier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div id="pane9" class="tab-pane">
+          <div class="jumbotron">
+            <h3>References</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Snak</th>
+                <th>Hash</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @references.each do |reference| %>
+                  <tr>
+                    <td><%= reference.snak %></td>
+                    <td><%= reference.hash %></td>
+                    <td><%= link_to 'Show', reference %></td>
+                    <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
+                    <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div id="pane10" class="tab-pane">
+          <div class="jumbotron">
+            <h3>References Snak</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Snak</th>
+                <th>Snaktype</th>
+                <th>Property</th>
+                <th>Datatype</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @references_snaks.each do |references_snak| %>
+                  <tr>
+                    <td><%= references_snak.snak %></td>
+                    <td><%= references_snak.snaktype %></td>
+                    <td><%= references_snak.property %></td>
+                    <td><%= references_snak.datatype %></td>
+                    <td><%= link_to 'Show', references_snak %></td>
+                    <td><%= link_to 'Edit', edit_references_snak_path(references_snak) %></td>
+                    <td><%= link_to 'Destroy', references_snak, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="pane11" class="tab-pane">
+          <div class="jumbotron">
+            <h3>Site Links</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Site</th>
+                <th>Title</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @sitelinks.each do |sitelink| %>
+                  <tr>
+                    <td><%= sitelink.site %></td>
+                    <td><%= sitelink.title %></td>
+                    <td><%= link_to 'Show', sitelink %></td>
+                    <td><%= link_to 'Edit', edit_sitelink_path(sitelink) %></td>
+                    <td><%= link_to 'Destroy', sitelink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div><!-- /.tab-content -->
+    </div><!-- /.tabbable -->
 </div>
