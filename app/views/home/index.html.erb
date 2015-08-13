@@ -10,6 +10,7 @@
     <div class="tabbable">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#pane1" data-toggle="tab">Add entity</a></li>
+        <li><a href="#pane2.1" data-toggle="tab">Paste JSON </a></li>
         <li><a href="#pane2" data-toggle="tab">SQL </a></li>
         <li><a href="#pane3" data-toggle="tab">Entity </a></li>
         <li><a href="#pane4" data-toggle="tab">Label</a></li>
@@ -48,6 +49,30 @@
 
 
 
+
+        </div>
+        <div id="pane2.1" class="tab-pane">
+          <div class="jumbotron">
+
+
+            <h2>Paste JSON:</h2>
+            <p>Insert a new Entity JSON </p>
+            <form class="form-horizontal" method="get" role="form" action= <%= home_addEntity_path %> >
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Entity ID:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="entityid" class="form-control" placeholder="JSON">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+              </div>
+            </form>
+
+
+          </div>
 
         </div>
         <div id="pane2" class="tab-pane">

@@ -1,4 +1,4 @@
-require 'httpclient'
+
 class HomeController < ApplicationController
   def index
     @aliases = Alias.all
@@ -20,8 +20,8 @@ class HomeController < ApplicationController
     @entityid= params[:entityid]
     @http = HTTPClient.new
 
-    @uri = URI('www.wikidata.com/entity/p18.json')
-    @json = @http.get_content('www.wikidata.com/entity/p18.json')
+    #@uri = URI('www.wikidata.com/entity/p18.json')
+   # @json = @http.get_content('www.wikidata.com/entity/p18.json')
     #@json = Net::HTTP.get(@uri) # => String
     #@json ='asd'
     #redirect_to root_path

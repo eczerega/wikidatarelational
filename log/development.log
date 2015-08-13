@@ -36101,3 +36101,346 @@ NameError - uninitialized constant HomeController::HTTPClient:
 
 
 Started POST "/__better_errors/005821e24b6ddc3e/variables" for 127.0.0.1 at 2015-08-12 23:17:29 -0400
+
+
+Started GET "/empresas/new" for 127.0.0.1 at 2015-08-12 23:43:54 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (No route matches [GET] "/empresas/new"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /home/enzo/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/enzo/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/enzo/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.6ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (34.9ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (38.5ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (199.6ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (3.4ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (2.1ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (46.8ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.8ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/enzo/.rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (98.8ms)
+
+
+Started GET "/references" for 127.0.0.1 at 2015-08-12 23:44:09 -0400
+Processing by ReferencesController#index as HTML
+  [1m[35mReference Load (0.4ms)[0m  SELECT "references".* FROM "references"
+  Rendered references/index.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 1480ms (Views: 1471.6ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/assets/aliases.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:11 -0400
+
+
+Started GET "/assets/claims.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:11 -0400
+
+
+Started GET "/assets/labels.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:11 -0400
+
+
+Started GET "/assets/framework_and_overrides.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:11 -0400
+
+
+Started GET "/assets/entities.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:11 -0400
+
+
+Started GET "/assets/descriptions.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:11 -0400
+
+
+Started GET "/assets/home.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:11 -0400
+
+
+Started GET "/assets/qualifiers.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:11 -0400
+
+
+Started GET "/assets/references.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:11 -0400
+
+
+Started GET "/assets/references_snaks.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:11 -0400
+
+
+Started GET "/assets/scaffolds2.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/sessions.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/sitelinks.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/tests.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/twilio.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/application.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/jquery.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/jquery_ujs.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/turbolinks.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/affix.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/alert.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/button.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/carousel.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/collapse.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/dropdown.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/modal.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/scrollspy.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/tab.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/transition.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/tooltip.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap/popover.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/bootstrap-sprockets.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/aliases.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/claims.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/descriptions.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/entities.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/home.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/labels.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/qualifiers.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/references.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/references_snaks.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/sessions.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/sitelinks.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/tests.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/twilio.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:12 -0400
+
+
+Started GET "/assets/application.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:13 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-12 23:44:15 -0400
+Processing by HomeController#index as HTML
+  [1m[36mEntity Load (2.3ms)[0m  [1mSELECT "entities".* FROM "entities"[0m
+  [1m[35mLabel Load (3.5ms)[0m  SELECT "labels".* FROM "labels"
+  [1m[36mDescription Load (0.4ms)[0m  [1mSELECT "descriptions".* FROM "descriptions"[0m
+  [1m[35mAlias Load (0.3ms)[0m  SELECT "aliases".* FROM "aliases"
+  [1m[36mClaim Load (0.2ms)[0m  [1mSELECT "claims".* FROM "claims"[0m
+  [1m[35mQualifier Load (0.3ms)[0m  SELECT "qualifiers".* FROM "qualifiers"
+  [1m[36mReference Load (0.2ms)[0m  [1mSELECT "references".* FROM "references"[0m
+  [1m[35mReferencesSnak Load (0.3ms)[0m  SELECT "references_snaks".* FROM "references_snaks"
+  [1m[36mSitelink Load (0.2ms)[0m  [1mSELECT "sitelinks".* FROM "sitelinks"[0m
+  Rendered home/index.html.erb within layouts/application (54.6ms)
+Completed 200 OK in 475ms (Views: 332.2ms | ActiveRecord: 24.9ms)
+
+
+Started GET "/assets/aliases.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/claims.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/home.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/descriptions.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/framework_and_overrides.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/entities.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/labels.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/references.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/qualifiers.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/references_snaks.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/scaffolds2.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/sessions.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/sitelinks.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/tests.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/twilio.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/application.self.css?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/jquery.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/jquery_ujs.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/turbolinks.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/affix.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/alert.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/button.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/carousel.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/collapse.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/dropdown.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/modal.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/scrollspy.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/tab.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/transition.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/tooltip.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap/popover.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/bootstrap-sprockets.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/aliases.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/claims.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/descriptions.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/entities.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/home.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/labels.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/qualifiers.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/references.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/references_snaks.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/sessions.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:16 -0400
+
+
+Started GET "/assets/sitelinks.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:17 -0400
+
+
+Started GET "/assets/application.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:17 -0400
+
+
+Started GET "/assets/tests.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:17 -0400
+
+
+Started GET "/assets/twilio.self.js?body=1" for 127.0.0.1 at 2015-08-12 23:44:17 -0400
