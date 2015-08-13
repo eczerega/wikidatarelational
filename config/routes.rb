@@ -19,12 +19,17 @@ Rails.application.routes.draw do
 
   resources :tests
 
+
+  get 'home/addEntity' => 'home#addEntity'
+
+
   #Ruta para descargar pdfs
   resources :usuarios do
     member do
       get :download
     end
   end
+
 
   root 'home#index'
 

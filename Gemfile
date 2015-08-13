@@ -48,6 +48,7 @@ gem 'twilio-ruby'
 gem 'better_errors'
 ##
 
+gem 'httpclient'
 
 #Gema para subir archivos
 gem 'carrierwave'

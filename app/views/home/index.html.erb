@@ -1,4 +1,5 @@
-
+<%= params.inspect %>
+<br>
   <div class="container">
     <h1>Relational database</h1>
     <p>Wikidata JSON entities modeling in relational tables:</p>
@@ -28,11 +29,11 @@
 
             <h2>Add entity:</h2>
             <p>Insert a new entity ID (property or item) in the form. (Example: P18) </p>
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" method="get" role="form" action= <%= home_addEntity_path %> >
               <div class="form-group">
                 <label class="control-label col-sm-2" for="email">Entity ID:</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="email" placeholder="P18">
+                  <input type="text" name="entityid" class="form-control" placeholder="P18">
                 </div>
               </div>
               <div class="form-group">
