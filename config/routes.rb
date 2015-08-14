@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :tests
 
 
-  get 'home/addEntity' => 'home#addEntity'
+  post 'home/addEntity' => 'home#addEntity'
 
 
   #Ruta para descargar pdfs

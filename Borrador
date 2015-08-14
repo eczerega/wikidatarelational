@@ -1,0 +1,2 @@
+ puts content['references'][0]['hash']
+               puts content['references'][0]['snaks']
