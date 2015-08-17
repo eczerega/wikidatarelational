@@ -3292,53 +3292,66 @@ parsed["entities"].keys.each do |entityid|
   parsed["entities"][entityid].keys.each do |values|
     if values!='descriptions' && values!='labels' && values!='claims' && values!='aliases' && values!='sitelinks'
       #    key                  value
-      puts values.to_s + ": " + parsed["entities"][entityid][values].to_s
+      #puts values.to_s + ": " + parsed["entities"][entityid][values].to_s
     elsif values=='aliases'
       parsed["entities"][entityid][values].each do |aliase|
         aliase[1].each do |content|
-          puts content['language']
-          puts content['value']
+          #puts content['language']
+          #puts content['value']
         end
       end
     elsif values=='descriptions'
       parsed["entities"][entityid][values].keys.each do  |description|
-        puts parsed["entities"][entityid][values][description]['language'].to_s
-        puts parsed["entities"][entityid][values][description]['value']
+        #puts parsed["entities"][entityid][values][description]['language'].to_s
+        #puts parsed["entities"][entityid][values][description]['value']
       end
     elsif values=='labels'
       parsed["entities"][entityid][values].keys.each do  |label|
-        puts parsed["entities"][entityid][values][label]['language'].to_s
-        puts parsed["entities"][entityid][values][label]['value']
+        #puts parsed["entities"][entityid][values][label]['language'].to_s
+        #puts parsed["entities"][entityid][values][label]['value']
       end
     elsif values=='claims'
       parsed["entities"][entityid][values].each do |claim|
         claim[1].each do |content|
-          puts content['id']
-          puts content['mainsnak']['snaktype']
-          puts content['mainsnak']['property']
-          puts content['mainsnak']['datatype']
-          puts content['mainsnak']['datavalue']
-          puts content['type']
-          puts content['rank']
+          #puts content['id']
+          #puts content['mainsnak']['snaktype']
+          #puts content['mainsnak']['property']
+          #puts content['mainsnak']['datatype']
+          #puts content['mainsnak']['datavalue']
+          #puts content['type']
+          #puts content['rank']
           if !content['references'].nil?
                 content['references'].each do |reference|
-                 puts reference['hash']
+                # puts reference['hash']
                  reference['snaks'].each do |snaks|
                       snaks[1].each do |snak|
-                        puts snak['snaktype']
-                        puts snak['property']
-                        puts snak['datatype']
-                        puts snak['datavalue']
+                     #   puts snak['snaktype']
+                     #   puts snak['property']
+                     #   puts snak['datatype']
+                     #   puts snak['datavalue']
                       end
                  end
                end
+          end
+          if !content['qualifiers'].nil?
+              content['qualifiers'].each do |qualifier|
+               qualifier[1].each do |qcontent|
+                 puts qcontent['hash']
+                 puts qcontent['snaktype']
+                 puts qcontent['property']
+                 puts qcontent['datatype']
+                 puts qcontent['datavalue']
+
+               end
+            end
+
           end
         end
       end
     elsif values=='sitelinks'
       parsed["entities"][entityid][values].keys.each do  |link|
-        puts parsed["entities"][entityid][values][link]['site']
-        puts parsed["entities"][entityid][values][link]['title']
+       # puts parsed["entities"][entityid][values][link]['site']
+       # puts parsed["entities"][entityid][values][link]['title']
       end
     end
   end

@@ -19,15 +19,9 @@ class HomeController < ApplicationController
   end
 
   def addEntity
-
-
     @json = params[:json]
-   # @string = @json.gsub!(/[^0-9A-Za-z]/, '')
     @string2 = @json
     string = @json
-
-
-
     parsed = JSON.parse(string) # returns a hash
     parsed["entities"].keys.each do |entityid|
       parsed["entities"][entityid].keys.each do |values|
@@ -45,6 +39,8 @@ class HomeController < ApplicationController
           @eid=parsed["entities"][entityid][values].to_s
         elsif values=='type'
           @type=parsed["entities"][entityid][values].to_s
+        elsif values=='datatype'
+          @datatype_e=parsed["entities"][entityid][values].to_s
         elsif values=='aliases'
           parsed["entities"][entityid][values].each do |aliase|
             aliase[1].each do |content|
@@ -72,11 +68,48 @@ class HomeController < ApplicationController
               @snaktype = content['mainsnak']['snaktype']
               @property = content['mainsnak']['property']
               @datatype = content['mainsnak']['datatype']
-              @datavalue = content['mainsnak']['datavalue']
+              @datavalue = ''
+              @datavalue_string = ''
+
+              begin
+                @datavalue_type = content['mainsnak']['datavalue']['type']
+                if @datatype=='wikibase-item'
+                  @datavalue = 'Q'+ content['mainsnak']['datavalue']['value']['numeric-id'].to_s
+                else
+                  @datavalue_string = content['mainsnak']['datavalue']['value']
+                end
+              rescue Exception => e
+                @datavalue_string = 'NO VALUEEEEEE!!!'
+              end
               @claim_type = content['type']
               @rank = content['rank']
-
-              Claim.create(aid: @claimid, rank: @rank, snaktype: @snaktype, property: @property, datatype: @datatype)
+              Claim.create(eid:@eid ,aid: @claimid, rank: @rank, snaktype: @snaktype, property: @property, datatype: @datatype, type_c: @claim_type, value_string: @datavalue_string, value_item: @datavalue, value_type: @datavalue_type )
+              if !content['qualifiers'].nil?
+                content['qualifiers'].each do |qualifier|
+                  @counter =1
+                  qualifier[1].each do |qcontent|
+                    @qhash= qcontent['hash']
+                    @qsnaktype= qcontent['snaktype']
+                    @qproperty= qcontent['property']
+                    @qdatatype= qcontent['datatype']
+                    @qdatavalue= ''
+                    @qdatavalue_string=''
+                    @qvalue_type= qcontent['datatype']
+                    begin
+                      @qdatavalue_type = qcontent['datavalue']['type']
+                      if @qdatatype=='wikibase-item'
+                        @qdatavalue = 'Q'+ qcontent['datavalue']['value']['numeric-id'].to_s
+                      else
+                        @qdatavalue_string = qcontent['datavalue']['value']
+                      end
+                    rescue Exception => e
+                      @qdatavalue_string = 'NO VALUEEEEEE!!!'
+                    end
+                    Qualifier.create(eid: @eid,  pid: @property, hash_q: @qhash, snaktype: @qsnaktype, property: @qproperty, datatype: @qdatatype, value_string: @qdatavalue_string, value: @qdatavalue, order: @counter, value_type: @qdatavalue_type)
+                    @counter= @counter+1
+                  end
+                end
+               end
               if !content['references'].nil?
                 content['references'].each do |reference|
                   puts reference['hash']
@@ -94,14 +127,15 @@ class HomeController < ApplicationController
           end
         elsif values=='sitelinks'
           parsed["entities"][entityid][values].keys.each do  |link|
-            puts parsed["entities"][entityid][values][link]['site']
-            puts parsed["entities"][entityid][values][link]['title']
+            @link_site= parsed["entities"][entityid][values][link]['site']
+            @link_title = parsed["entities"][entityid][values][link]['title']
+             Sitelink.create(eid: @eid, site:@link_site , title: @link_site)
           end
         end
       end
     end
-
-    Entity.create(pageid:  @pageid, ns: @ns, title: @title, lastrevid: @lastrevid, modified: @modified, eid: @eid, type_e: @type, property_datatype: 'asdasd')
+    Entity.create(pageid:  @pageid, ns: @ns, title: @title, lastrevid: @lastrevid, modified: @modified, eid: @eid, type_e: @type, property_datatype: @datatype_e)
+    @datatype_e=''
     redirect_to root_path
   end
 end

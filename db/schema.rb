@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814062636) do
+ActiveRecord::Schema.define(version: 20150817025232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150814062636) do
 
   create_table "claims", force: :cascade do |t|
     t.string   "aid"
-    t.string   "type"
+    t.string   "type_c"
     t.string   "rank"
     t.string   "snaktype"
     t.string   "property"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150814062636) do
     t.string   "datatype"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "eid"
   end
 
   create_table "descriptions", force: :cascade do |t|
@@ -52,11 +53,12 @@ ActiveRecord::Schema.define(version: 20150814062636) do
     t.string   "title"
     t.string   "lastrevid"
     t.string   "modified"
-    t.string   "eid"
     t.string   "type_e"
     t.string   "property_datatype"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "aid"
+    t.string   "eid"
   end
 
   create_table "labels", force: :cascade do |t|
@@ -68,22 +70,27 @@ ActiveRecord::Schema.define(version: 20150814062636) do
   end
 
   create_table "qualifiers", force: :cascade do |t|
-    t.string   "hash"
+    t.string   "hash_q"
     t.string   "snaktype"
     t.string   "property"
     t.string   "value"
     t.string   "value_type"
     t.string   "datatype"
     t.integer  "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "value_string"
+    t.string   "eid"
+    t.string   "pid"
   end
 
   create_table "references", force: :cascade do |t|
-    t.string   "snak"
-    t.string   "hash"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "reference_id"
+    t.string   "hash_r"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "eid"
+    t.string   "pid"
   end
 
   create_table "references_snaks", force: :cascade do |t|
@@ -100,6 +107,7 @@ ActiveRecord::Schema.define(version: 20150814062636) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "eid"
   end
 
   create_table "tests", force: :cascade do |t|

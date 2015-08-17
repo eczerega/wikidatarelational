@@ -2,16 +2,14 @@
 <br>
   <div class="container">
     <h1>Relational database</h1>
-    <p>Wikidata JSON entities modeling in relational tables:</p>
+    <p>Wikidata JSON entities in relational tables:</p>
 
 
 
 
     <div class="tabbable">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#pane1" data-toggle="tab">Add entity</a></li>
-        <li><a href="#pane12" data-toggle="tab">Paste JSON </a></li>
-        <li><a href="#pane2" data-toggle="tab">SQL </a></li>
+        <li class="active"><a href="#pane12 " data-toggle="tab">Paste JSON </a></li>
         <li><a href="#pane3" data-toggle="tab">Entity </a></li>
         <li><a href="#pane4" data-toggle="tab">Label</a></li>
         <li><a href="#pane5" data-toggle="tab">Description</a></li>
@@ -23,34 +21,6 @@
         <li><a href="#pane11" data-toggle="tab">Sitelinks</a></li>
       </ul>
       <div class="tab-content">
-        <div id="pane1" class="tab-pane active">
-
-          <div class="jumbotron">
-
-
-            <h2>Add entity:</h2>
-            <p>Insert a new entity ID (property or item) in the form. (Example: P18) </p>
-            <form class="form-horizontal" method="get" role="form" action= <%= home_addEntity_path %> >
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="email">Entity ID:</label>
-                <div class="col-sm-10">
-                  <input type="text" name="entityid" class="form-control" placeholder="P18">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Submit</button>
-                </div>
-              </div>
-            </form>
-
-
-          </div>
-
-
-
-
-        </div>
         <div id="pane12" class="tab-pane">
           <div class="jumbotron">
 
@@ -75,41 +45,19 @@
           </div>
 
         </div>
-        <div id="pane2" class="tab-pane">
-          <div class="jumbotron">
-
-
-            <h2>SQL interpreter:</h2>
-            <p>Write a SQL query </p>
-            <form class="form-horizontal" role="form">
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="email">Query:</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="email" placeholder="SELECT FROM WHERE">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Submit</button>
-                </div>
-              </div>
-            </form>
-
-
-          </div>
-        </div>
         <div id="pane3" class="tab-pane">
         <div class="jumbotron">
         <h3>Entity</h3>
           <table class="table table-hover">
             <thead>
             <tr>
+              <th><ins>Entity ID</ins></th>
               <th>Pageid</th>
               <th>Ns</th>
               <th>Title</th>
               <th>Lastrevid</th>
               <th>Modified</th>
-              <th>Eid</th>
+
               <th>Type</th>
               <th>Property datatype</th>
               <th colspan="3"></th>
@@ -119,18 +67,16 @@
             <tbody>
             <% @entities.each do |entity| %>
                 <tr>
+
+                  <td><%= entity.eid %></td>
                   <td><%= entity.pageid %></td>
                   <td><%= entity.ns %></td>
                   <td><%= entity.title %></td>
                   <td><%= entity.lastrevid %></td>
                   <td><%= entity.modified %></td>
-                  <td><%= entity.eid %></td>
                   <td><%= entity.type_e %></td>
                   <td><%= entity.property_datatype %></td>
-                  <td><%= link_to 'Show', entity %></td>
-                  <td><%= link_to 'Edit', edit_entity_path(entity) %></td>
-                  <td><%= link_to 'Destroy', entity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                </tr>
+                 </tr>
             <% end %>
             </tbody>
           </table>
@@ -145,8 +91,8 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                <th>Aid</th>
-                <th>Language</th>
+                <th> <ins>Entity ID </ins></th>
+                <th><ins>Language</ins></th>
                 <th>Value</th>
                 <th colspan="3"></th>
               </tr>
@@ -158,9 +104,6 @@
                     <td><%= label.aid %></td>
                     <td><%= label.language %></td>
                     <td><%= label.value %></td>
-                    <td><%= link_to 'Show', label %></td>
-                    <td><%= link_to 'Edit', edit_label_path(label) %></td>
-                    <td><%= link_to 'Destroy', label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
               <% end %>
               </tbody>
@@ -173,8 +116,8 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                <th>Aid</th>
-                <th>Language</th>
+                <th><ins>Entity ID</ins> </th>
+                <th><ins>Language</ins></th>
                 <th>Value</th>
                 <th colspan="3"></th>
               </tr>
@@ -186,10 +129,7 @@
                     <td><%= description.aid %></td>
                     <td><%= description.language %></td>
                     <td><%= description.value %></td>
-                    <td><%= link_to 'Show', description %></td>
-                    <td><%= link_to 'Edit', edit_description_path(description) %></td>
-                    <td><%= link_to 'Destroy', description, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
+                      </tr>
               <% end %>
               </tbody>
             </table>
@@ -202,9 +142,9 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                <th>Aid</th>
-                <th>Language</th>
-                <th>Value</th>
+                <th><ins>Entity ID</ins> </th>
+                <th><ins>Language</ins></th>
+                <th><ins>Value</ins></th>
                 <th colspan="3"></th>
               </tr>
               </thead>
@@ -215,10 +155,7 @@
                     <td><%= aliasd.aid %></td>
                     <td><%= aliasd.language %></td>
                     <td><%= aliasd.value %></td>
-                    <td><%= link_to 'Show', aliasd %></td>
-                    <td><%= link_to 'Edit', edit_alias_path(aliasd) %></td>
-                    <td><%= link_to 'Destroy', aliasd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
+                    </tr>
               <% end %>
               </tbody>
             </table>
@@ -230,7 +167,8 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                <th>Aid</th>
+                <th><ins>Entity ID</ins> </th>
+                <th><ins>Claim ID</ins></th>
                 <th>Type</th>
                 <th>Rank</th>
                 <th>Snaktype</th>
@@ -246,8 +184,9 @@
               <tbody>
               <% @claims.each do |claim| %>
                   <tr>
+                    <td><%= claim.eid %></td>
                     <td><%= claim.aid %></td>
-                    <td><%= claim.type %></td>
+                    <td><%= claim.type_c %></td>
                     <td><%= claim.rank %></td>
                     <td><%= claim.snaktype %></td>
                     <td><%= claim.property %></td>
@@ -255,10 +194,7 @@
                     <td><%= claim.value_item %></td>
                     <td><%= claim.value_type %></td>
                     <td><%= claim.datatype %></td>
-                    <td><%= link_to 'Show', claim %></td>
-                    <td><%= link_to 'Edit', edit_claim_path(claim) %></td>
-                    <td><%= link_to 'Destroy', claim, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
+                      </tr>
               <% end %>
               </tbody>
             </table>
@@ -272,10 +208,13 @@
             <table class="table table-hover">
               <thead>
               <tr>
+                <th><ins>Entity ID</ins></th>
+                <th><ins>Property ID</ins></th>
                 <th>Hash</th>
                 <th>Snaktype</th>
                 <th>Property</th>
-                <th>Value</th>
+                <th>Value String</th>
+                <th>Value Item</th>
                 <th>Value type</th>
                 <th>Datatype</th>
                 <th>Order</th>
@@ -286,16 +225,17 @@
               <tbody>
               <% @qualifiers.each do |qualifier| %>
                   <tr>
+                    <td><%= qualifier.eid %></td>
+                    <td><%= qualifier.pid %></td>
                     <td><%= qualifier.hash %></td>
                     <td><%= qualifier.snaktype %></td>
                     <td><%= qualifier.property %></td>
+                    <td><%= qualifier.value_string %></td>
                     <td><%= qualifier.value %></td>
                     <td><%= qualifier.value_type %></td>
                     <td><%= qualifier.datatype %></td>
                     <td><%= qualifier.order %></td>
-                    <td><%= link_to 'Show', qualifier %></td>
-                    <td><%= link_to 'Edit', edit_qualifier_path(qualifier) %></td>
-                    <td><%= link_to 'Destroy', qualifier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </td>
                   </tr>
               <% end %>
               </tbody>
@@ -309,7 +249,9 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                <th>Snak</th>
+                <th><ins>Entity id</ins></th>
+                <th><ins>property id</ins></th>
+                <th><ins>Reference_id</ins></th>
                 <th>Hash</th>
                 <th colspan="3"></th>
               </tr>
@@ -318,12 +260,11 @@
               <tbody>
               <% @references.each do |reference| %>
                   <tr>
-                    <td><%= reference.snak %></td>
+                    <td><%= reference.eid %></td>
+                    <td><%= reference.pid %></td>
+                    <td><%= reference.reference_id %></td>
                     <td><%= reference.hash %></td>
-                    <td><%= link_to 'Show', reference %></td>
-                    <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
-                    <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
+                     </tr>
               <% end %>
               </tbody>
             </table>
@@ -351,10 +292,7 @@
                     <td><%= references_snak.snaktype %></td>
                     <td><%= references_snak.property %></td>
                     <td><%= references_snak.datatype %></td>
-                    <td><%= link_to 'Show', references_snak %></td>
-                    <td><%= link_to 'Edit', edit_references_snak_path(references_snak) %></td>
-                    <td><%= link_to 'Destroy', references_snak, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
+               </tr>
               <% end %>
               </tbody>
             </table>
@@ -366,6 +304,7 @@
             <table class="table table-hover">
               <thead>
               <tr>
+                <th><ins>Entity ID</ins> </th>
                 <th>Site</th>
                 <th>Title</th>
                 <th colspan="3"></th>
@@ -375,12 +314,10 @@
               <tbody>
               <% @sitelinks.each do |sitelink| %>
                   <tr>
+                    <td><%= sitelink.eid %></td>
                     <td><%= sitelink.site %></td>
                     <td><%= sitelink.title %></td>
-                    <td><%= link_to 'Show', sitelink %></td>
-                    <td><%= link_to 'Edit', edit_sitelink_path(sitelink) %></td>
-                    <td><%= link_to 'Destroy', sitelink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
+                </tr>
               <% end %>
               </tbody>
             </table>
