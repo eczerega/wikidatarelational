@@ -1,16 +1,18 @@
+<%= link_to 'Drop all', destroy_them_all_path, method: :delete %>
 
 <br>
+
   <div class="container">
     <h1>Relational database</h1>
     <p>Wikidata JSON entities in relational tables:</p>
 
-
+    <p id="notice"><%= notice %></p>
 
 
     <div class="tabbable">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#pane12 " data-toggle="tab">Paste JSON </a></li>
-        <li><a href="#pane3" data-toggle="tab">Entity </a></li>
+        <li ><a href="#pane3" data-toggle="tab">Entity </a></li>
         <li><a href="#pane4" data-toggle="tab">Label</a></li>
         <li><a href="#pane5" data-toggle="tab">Description</a></li>
         <li><a href="#pane6" data-toggle="tab">Aliases</a></li>
@@ -21,7 +23,7 @@
         <li><a href="#pane11" data-toggle="tab">Sitelinks</a></li>
       </ul>
       <div class="tab-content">
-        <div id="pane12" class="tab-pane">
+        <div id="pane12" class="tab-pane active">
           <div class="jumbotron">
 
 
@@ -167,7 +169,7 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                <th><ins>Entity ID</ins> </th>
+                <th>Entity ID </th>
                 <th><ins>Claim ID</ins></th>
                 <th>Type</th>
                 <th>Rank</th>
@@ -208,8 +210,7 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                <th><ins>Entity ID</ins></th>
-                <th><ins>Property ID</ins></th>
+                <th><ins>Claim ID</ins></th>
                 <th>Hash</th>
                 <th>Snaktype</th>
                 <th>Property</th>
@@ -218,6 +219,7 @@
                 <th>Value type</th>
                 <th>Datatype</th>
                 <th>Order</th>
+                <th>Qualifiers order</th>
                 <th colspan="3"></th>
               </tr>
               </thead>
@@ -225,9 +227,8 @@
               <tbody>
               <% @qualifiers.each do |qualifier| %>
                   <tr>
-                    <td><%= qualifier.eid %></td>
-                    <td><%= qualifier.pid %></td>
-                    <td><%= qualifier.hash %></td>
+                    <td><%= qualifier.claim_id %></td>
+                    <td><%= qualifier.hash_q %></td>
                     <td><%= qualifier.snaktype %></td>
                     <td><%= qualifier.property %></td>
                     <td><%= qualifier.value_string %></td>
@@ -235,6 +236,7 @@
                     <td><%= qualifier.value_type %></td>
                     <td><%= qualifier.datatype %></td>
                     <td><%= qualifier.order %></td>
+                    <td><%= qualifier.qualifiers_order %></td>
                     </td>
                   </tr>
               <% end %>
@@ -249,9 +251,8 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                <th><ins>Entity id</ins></th>
-                <th><ins>property id</ins></th>
-                <th><ins>Reference_id</ins></th>
+                <th>Claim id</th>
+                <th><ins>Id</ins></th>
                 <th>Hash</th>
                 <th colspan="3"></th>
               </tr>
@@ -260,10 +261,9 @@
               <tbody>
               <% @references.each do |reference| %>
                   <tr>
-                    <td><%= reference.eid %></td>
-                    <td><%= reference.pid %></td>
-                    <td><%= reference.reference_id %></td>
-                    <td><%= reference.hash %></td>
+                    <td><%= reference.claim_id %></td>
+                    <td><%= reference.id %></td>
+                    <td><%= reference.hash_r %></td>
                      </tr>
               <% end %>
               </tbody>
@@ -275,24 +275,35 @@
           <div class="jumbotron">
             <h3>References Snak</h3>
             <table class="table table-hover">
+
               <thead>
               <tr>
-                <th>Snak</th>
+                <th><ins>Reference ID</ins></th>
                 <th>Snaktype</th>
                 <th>Property</th>
+                <th>Value string</th>
+                <th>Value item</th>
+                <th>Value type</th>
                 <th>Datatype</th>
+                <th>Order</th>
+                <th>Reference order</th>
                 <th colspan="3"></th>
               </tr>
               </thead>
 
               <tbody>
-              <% @references_snaks.each do |references_snak| %>
+              <% @references_snaks2s.each do |references_snaks2| %>
                   <tr>
-                    <td><%= references_snak.snak %></td>
-                    <td><%= references_snak.snaktype %></td>
-                    <td><%= references_snak.property %></td>
-                    <td><%= references_snak.datatype %></td>
-               </tr>
+                    <td><%= references_snaks2.reference_id %></td>
+                    <td><%= references_snaks2.snaktype %></td>
+                    <td><%= references_snaks2.property %></td>
+                    <td><%= references_snaks2.value_string %></td>
+                    <td><%= references_snaks2.value_item %></td>
+                    <td><%= references_snaks2.value_type %></td>
+                    <td><%= references_snaks2.datatype %></td>
+                    <td><%= references_snaks2.order %></td>
+                    <td><%= references_snaks2.reference_order %></td>
+                  </tr>
               <% end %>
               </tbody>
             </table>
@@ -304,7 +315,7 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                <th><ins>Entity ID</ins> </th>
+                <th>Entity ID </th>
                 <th>Site</th>
                 <th>Title</th>
                 <th colspan="3"></th>

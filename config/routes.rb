@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :references_snaks2s
+
   resources :references_snaks
 
   resources :references
@@ -39,6 +41,9 @@ Rails.application.routes.draw do
 
   #sesiones
   resource :session, only: [:new, :create, :destroy]
+
+
+  match 'destroy_them_all', to: 'home#destroy_them_all', via: :delete
 
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817025232) do
+ActiveRecord::Schema.define(version: 20150821175928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +34,10 @@ ActiveRecord::Schema.define(version: 20150817025232) do
     t.string   "value_item"
     t.string   "value_type"
     t.string   "datatype"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "eid"
+    t.string   "qualifiers_order"
   end
 
   create_table "descriptions", force: :cascade do |t|
@@ -77,11 +78,13 @@ ActiveRecord::Schema.define(version: 20150817025232) do
     t.string   "value_type"
     t.string   "datatype"
     t.integer  "order"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "value_string"
     t.string   "eid"
     t.string   "pid"
+    t.string   "qualifiers_order"
+    t.string   "claim_id"
   end
 
   create_table "references", force: :cascade do |t|
@@ -91,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150817025232) do
     t.datetime "updated_at",   null: false
     t.string   "eid"
     t.string   "pid"
+    t.string   "claim_id"
   end
 
   create_table "references_snaks", force: :cascade do |t|
@@ -100,6 +104,20 @@ ActiveRecord::Schema.define(version: 20150817025232) do
     t.string   "datatype"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "references_snaks2s", force: :cascade do |t|
+    t.string   "reference_id"
+    t.string   "snaktype"
+    t.string   "property"
+    t.string   "value_string"
+    t.string   "value_item"
+    t.string   "value_type"
+    t.string   "datatype"
+    t.integer  "order"
+    t.integer  "reference_order"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "sitelinks", force: :cascade do |t|

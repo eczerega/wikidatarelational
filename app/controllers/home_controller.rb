@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     @labels = Label.all
     @qualifiers = Qualifier.all
     @references = Reference.all
-    @references_snaks = ReferencesSnak.all
+    @references_snaks2s = ReferencesSnaks2.all
     @sitelinks = Sitelink.all
   end
 
@@ -84,43 +84,79 @@ class HomeController < ApplicationController
               @claim_type = content['type']
               @rank = content['rank']
               Claim.create(eid:@eid ,aid: @claimid, rank: @rank, snaktype: @snaktype, property: @property, datatype: @datatype, type_c: @claim_type, value_string: @datavalue_string, value_item: @datavalue, value_type: @datavalue_type )
-              if !content['qualifiers'].nil?
-                content['qualifiers'].each do |qualifier|
-                  @counter =1
-                  qualifier[1].each do |qcontent|
-                    @qhash= qcontent['hash']
-                    @qsnaktype= qcontent['snaktype']
-                    @qproperty= qcontent['property']
-                    @qdatatype= qcontent['datatype']
-                    @qdatavalue= ''
-                    @qdatavalue_string=''
-                    @qvalue_type= qcontent['datatype']
-                    begin
-                      @qdatavalue_type = qcontent['datavalue']['type']
-                      if @qdatatype=='wikibase-item'
-                        @qdatavalue = 'Q'+ qcontent['datavalue']['value']['numeric-id'].to_s
-                      else
-                        @qdatavalue_string = qcontent['datavalue']['value']
+              @counter =1
+              @positionh=1
+              @order_hash = Hash.new
+              if !content['qualifiers-order'].nil?
+                content['qualifiers-order'].each do |propertyorder|
+                  @order_hash[propertyorder]=@positionh
+                  @positionh=@positionh+1
+                end
+                if !content['qualifiers'].nil?
+                  content['qualifiers'].each do |qualifier|
+                    qualifier[1].each do |qcontent|
+                      @qhash= qcontent['hash']
+                      @qsnaktype= qcontent['snaktype']
+                      @qproperty= qcontent['property']
+                      @qdatatype= qcontent['datatype']
+                      @qdatavalue= ''
+                      @qdatavalue_string=''
+                      @qvalue_type= qcontent['datatype']
+                      begin
+                        @qdatavalue_type = qcontent['datavalue']['type']
+                        if @qdatatype=='wikibase-item'
+                          @qdatavalue = 'Q'+ qcontent['datavalue']['value']['numeric-id'].to_s
+                        else
+                          @qdatavalue_string = qcontent['datavalue']['value']
+                        end
+                      rescue Exception => e
+                        @qdatavalue_string = 'NO VALUEEEEEE!!!'
                       end
-                    rescue Exception => e
-                      @qdatavalue_string = 'NO VALUEEEEEE!!!'
+                      Qualifier.create(claim_id:@claimid, eid: @eid,  pid: @property, hash_q: @qhash, snaktype: @qsnaktype, property: @qproperty, datatype: @qdatatype, value_string: @qdatavalue_string, value: @qdatavalue, order: @counter, value_type: @qdatavalue_type, qualifiers_order: @order_hash[qcontent['property']].to_i)
+                      @counter= @counter+1
                     end
-                    Qualifier.create(eid: @eid,  pid: @property, hash_q: @qhash, snaktype: @qsnaktype, property: @qproperty, datatype: @qdatatype, value_string: @qdatavalue_string, value: @qdatavalue, order: @counter, value_type: @qdatavalue_type)
-                    @counter= @counter+1
                   end
                 end
-               end
+              end
+
+
+
               if !content['references'].nil?
                 content['references'].each do |reference|
-                  puts reference['hash']
+                  @hash_r = reference['hash']
+                  @ref= Reference.create(hash_r: @hash_r, claim_id: @claimid)
+                  @counters =1
+                  @positions=1
+                  @order_snak = Hash.new
+                  if !reference['snaks-order'].nil?
+                    reference['snaks-order'].each do |snaksorder|
+                    @order_snak[snaksorder]=@positions
+                    @positions=@positions+1
+                    end
                   reference['snaks'].each do |snaks|
+                    #Reference ID 	Snaktype 	Property 	Value string 	Value item 	Value type 	Datatype 	Order 	Reference order
                     snaks[1].each do |snak|
-                      puts snak['snaktype']
-                      puts snak['property']
-                      puts snak['datatype']
-                      puts snak['datavalue']
+                      @snaktype_r= snak['snaktype']
+                      @property_r= snak['property']
+                      @datatype_r= snak['datatype']
+                      @datavalue_r= ''
+                      @datavalue_string_r=''
+                      begin
+                        @valuetype_r= snak['datavalue']['type']
+                        if @datatype_r=='wikibase-item'
+                          @datavalue_r = 'Q'+ snak['datavalue']['value']['numeric-id'].to_s
+                        else
+                          @datavalue_string_r = snak['datavalue']['value']
+                        end
+                      rescue Exception => e
+                        @datavalue_string_r = 'NO VALUEEEEEE!!!'
+                      end
+                      ReferencesSnaks2.create(reference_id: @ref.id, snaktype: @snaktype_r, property: @property_r, value_string:  @datavalue_string_r, value_item:  @datavalue_r, value_type:  @valuetype_r, datatype: @datatype_r, order:@counters, reference_order:  @order_snak[@property_r].to_i)
+                      @counters= @counters+1
                     end
                   end
+                  end
+
                 end
               end
             end
@@ -136,6 +172,21 @@ class HomeController < ApplicationController
     end
     Entity.create(pageid:  @pageid, ns: @ns, title: @title, lastrevid: @lastrevid, modified: @modified, eid: @eid, type_e: @type, property_datatype: @datatype_e)
     @datatype_e=''
-    redirect_to root_path
+    redirect_to root_path, notice: 'Entity was successfully created.'
+  end
+
+  def destroy_them_all
+
+
+     Alias.destroy_all
+     Claim.destroy_all
+     Description.destroy_all
+     Entity.destroy_all
+     Label.destroy_all
+     Qualifier.destroy_all
+     Reference.destroy_all
+     ReferencesSnaks2.destroy_all
+     Sitelink.destroy_all
+    redirect_to root_path, notice: 'Entities were successfully destroyed.'
   end
 end
