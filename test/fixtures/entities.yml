@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pageid: MyString
+  ns: MyString
+  title: MyString
+  lastrevid: MyString
+  modified: MyString
+  eid: MyString
+  type: 
+  property_datatype: MyString
+
+two:
+  pageid: MyString
+  ns: MyString
+  title: MyString
+  lastrevid: MyString
+  modified: MyString
+  eid: MyString
+  type: 
+  property_datatype: MyString

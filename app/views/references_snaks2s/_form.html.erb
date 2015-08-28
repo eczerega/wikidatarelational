@@ -1,0 +1,53 @@
+<%= form_for(@references_snaks2) do |f| %>
+  <% if @references_snaks2.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@references_snaks2.errors.count, "error") %> prohibited this references_snaks2 from being saved:</h2>
+
+      <ul>
+      <% @references_snaks2.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :reference_id %><br>
+    <%= f.text_field :reference_id %>
+  </div>
+  <div class="field">
+    <%= f.label :snaktype %><br>
+    <%= f.text_field :snaktype %>
+  </div>
+  <div class="field">
+    <%= f.label :property %><br>
+    <%= f.text_field :property %>
+  </div>
+  <div class="field">
+    <%= f.label :value_string %><br>
+    <%= f.text_field :value_string %>
+  </div>
+  <div class="field">
+    <%= f.label :value_item %><br>
+    <%= f.text_field :value_item %>
+  </div>
+  <div class="field">
+    <%= f.label :value_type %><br>
+    <%= f.text_field :value_type %>
+  </div>
+  <div class="field">
+    <%= f.label :datatype %><br>
+    <%= f.text_field :datatype %>
+  </div>
+  <div class="field">
+    <%= f.label :order %><br>
+    <%= f.number_field :order %>
+  </div>
+  <div class="field">
+    <%= f.label :reference_order %><br>
+    <%= f.number_field :reference_order %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,45 @@
+<%= form_for(@qualifier) do |f| %>
+  <% if @qualifier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@qualifier.errors.count, "error") %> prohibited this qualifier from being saved:</h2>
+
+      <ul>
+      <% @qualifier.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :hash %><br>
+    <%= f.text_field :hash %>
+  </div>
+  <div class="field">
+    <%= f.label :snaktype %><br>
+    <%= f.text_field :snaktype %>
+  </div>
+  <div class="field">
+    <%= f.label :property %><br>
+    <%= f.text_field :property %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :value_type %><br>
+    <%= f.text_field :value_type %>
+  </div>
+  <div class="field">
+    <%= f.label :datatype %><br>
+    <%= f.text_field :datatype %>
+  </div>
+  <div class="field">
+    <%= f.label :order %><br>
+    <%= f.number_field :order %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

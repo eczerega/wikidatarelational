@@ -1,0 +1,35 @@
+rails g scaffold entity pageid:string ns:string title:string lastrevid:string modified:string eid:string type:string property_datatype:string
+
+rails g scaffold aliases aid:string language:string value:string
+
+rails g scaffold labels aid:string language:string value:string
+
+rails g scaffold description aid:string language:string value:string
+
+rails g scaffold claims aid:string type:string rank:string snaktype:string property:string value_string:string value_item:string value_type:string datatype:string
+
+rails g scaffold sitelinks site:string title:string
+
+rails g scaffold qualifiers hash:string snaktype:string property:string value:string value_type:string datatype:string order:integer
+
+rails g scaffold references snak:string hash:string
+
+rails g scaffold references_snaks snak:string snaktype:string property:string datatype:string
+
+
+{
+   "desc":
+           {
+               "someKey":"someValue",
+               "anotherKey":"value"
+           },
+    "main_item":
+               {
+                  "stats":
+                         {
+                             "a":8,
+                             "b":12,
+                             "c":10
+                         }
+               }
+}

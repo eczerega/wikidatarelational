@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Snak:</strong>
+  <%= @references_snak.snak %>
+</p>
+
+<p>
+  <strong>Snaktype:</strong>
+  <%= @references_snak.snaktype %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @references_snak.property %>
+</p>
+
+<p>
+  <strong>Datatype:</strong>
+  <%= @references_snak.datatype %>
+</p>
+
+<%= link_to 'Edit', edit_references_snak_path(@references_snak) %> |
+<%= link_to 'Back', references_snaks_path %>

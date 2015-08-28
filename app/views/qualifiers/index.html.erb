@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Qualifiers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hash</th>
+      <th>Snaktype</th>
+      <th>Property</th>
+      <th>Value</th>
+      <th>Value type</th>
+      <th>Datatype</th>
+      <th>Order</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @qualifiers.each do |qualifier| %>
+      <tr>
+        <td><%= qualifier.hash %></td>
+        <td><%= qualifier.snaktype %></td>
+        <td><%= qualifier.property %></td>
+        <td><%= qualifier.value %></td>
+        <td><%= qualifier.value_type %></td>
+        <td><%= qualifier.datatype %></td>
+        <td><%= qualifier.order %></td>
+        <td><%= link_to 'Show', qualifier %></td>
+        <td><%= link_to 'Edit', edit_qualifier_path(qualifier) %></td>
+        <td><%= link_to 'Destroy', qualifier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Qualifier', new_qualifier_path %>

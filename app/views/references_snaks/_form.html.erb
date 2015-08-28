@@ -1,0 +1,33 @@
+<%= form_for(@references_snak) do |f| %>
+  <% if @references_snak.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@references_snak.errors.count, "error") %> prohibited this references_snak from being saved:</h2>
+
+      <ul>
+      <% @references_snak.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :snak %><br>
+    <%= f.text_field :snak %>
+  </div>
+  <div class="field">
+    <%= f.label :snaktype %><br>
+    <%= f.text_field :snaktype %>
+  </div>
+  <div class="field">
+    <%= f.label :property %><br>
+    <%= f.text_field :property %>
+  </div>
+  <div class="field">
+    <%= f.label :datatype %><br>
+    <%= f.text_field :datatype %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

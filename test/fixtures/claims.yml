@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aid: MyString
+  type: 
+  rank: MyString
+  snaktype: MyString
+  property: MyString
+  value_string: MyString
+  value_item: MyString
+  value_type: MyString
+  datatype: MyString
+
+two:
+  aid: MyString
+  type: 
+  rank: MyString
+  snaktype: MyString
+  property: MyString
+  value_string: MyString
+  value_item: MyString
+  value_type: MyString
+  datatype: MyString

@@ -1,0 +1,340 @@
+<%= link_to 'Drop all', destroy_them_all_path, method: :delete %>
+
+<br>
+
+  <div class="container">
+    <h1>Relational database</h1>
+    <p>Wikidata JSON entities in relational tables:</p>
+
+    <p id="notice"><%= notice %></p>
+
+
+    <div class="tabbable">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#pane12 " data-toggle="tab">Paste JSON </a></li>
+        <li ><a href="#pane3" data-toggle="tab">Entity </a></li>
+        <li><a href="#pane4" data-toggle="tab">Label</a></li>
+        <li><a href="#pane5" data-toggle="tab">Description</a></li>
+        <li><a href="#pane6" data-toggle="tab">Aliases</a></li>
+        <li><a href="#pane7" data-toggle="tab">Claims</a></li>
+        <li><a href="#pane8" data-toggle="tab">Qualifiers</a></li>
+        <li><a href="#pane9" data-toggle="tab">References</a></li>
+        <li><a href="#pane10" data-toggle="tab">References_s</a></li>
+        <li><a href="#pane11" data-toggle="tab">Sitelinks</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="pane12" class="tab-pane active">
+          <div class="jumbotron">
+
+
+            <h2>Paste JSON:</h2>
+            <p>Insert a new Entity JSON </p>
+            <form class="form-horizontal" method="post" role="form" action= <%= home_addEntity_path %> >
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Entity ID:</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" rows="10" name="json" class="form-control" placeholder="JSON"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+              </div>
+            </form>
+
+
+          </div>
+
+        </div>
+        <div id="pane3" class="tab-pane">
+        <div class="jumbotron">
+        <h3>Entity</h3>
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th><ins>Entity ID</ins></th>
+              <th>Pageid</th>
+              <th>Ns</th>
+              <th>Title</th>
+              <th>Lastrevid</th>
+              <th>Modified</th>
+
+              <th>Type</th>
+              <th>Property datatype</th>
+              <th colspan="3"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @entities.each do |entity| %>
+                <tr>
+
+                  <td><%= entity.eid %></td>
+                  <td><%= entity.pageid %></td>
+                  <td><%= entity.ns %></td>
+                  <td><%= entity.title %></td>
+                  <td><%= entity.lastrevid %></td>
+                  <td><%= entity.modified %></td>
+                  <td><%= entity.type_e %></td>
+                  <td><%= entity.property_datatype %></td>
+                 </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        </div>
+        <div id="pane4" class="tab-pane">
+
+          <div class="jumbotron">
+            <h3>Label</h3>
+
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th> <ins>Entity ID </ins></th>
+                <th><ins>Language</ins></th>
+                <th>Value</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @labels.each do |label| %>
+                  <tr>
+                    <td><%= label.aid %></td>
+                    <td><%= label.language %></td>
+                    <td><%= label.value %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="pane5" class="tab-pane">
+          <div class="jumbotron">
+            <h3>Description</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th><ins>Entity ID</ins> </th>
+                <th><ins>Language</ins></th>
+                <th>Value</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @descriptions.each do |description| %>
+                  <tr>
+                    <td><%= description.aid %></td>
+                    <td><%= description.language %></td>
+                    <td><%= description.value %></td>
+                      </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div id="pane6" class="tab-pane">
+          <div class="jumbotron">
+            <h3>Aliases</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th><ins>Entity ID</ins> </th>
+                <th><ins>Language</ins></th>
+                <th><ins>Value</ins></th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @aliases.each do |aliasd| %>
+                  <tr>
+                    <td><%= aliasd.aid %></td>
+                    <td><%= aliasd.language %></td>
+                    <td><%= aliasd.value %></td>
+                    </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="pane7" class="tab-pane">
+          <div class="jumbotron">
+            <h3>Claims</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Entity ID </th>
+                <th><ins>Claim ID</ins></th>
+                <th>Type</th>
+                <th>Rank</th>
+                <th>Snaktype</th>
+                <th>Property</th>
+                <th>Value string</th>
+                <th>Value item</th>
+                <th>Value type</th>
+                <th>Datatype</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @claims.each do |claim| %>
+                  <tr>
+                    <td><%= claim.eid %></td>
+                    <td><%= claim.aid %></td>
+                    <td><%= claim.type_c %></td>
+                    <td><%= claim.rank %></td>
+                    <td><%= claim.snaktype %></td>
+                    <td><%= claim.property %></td>
+                    <td><%= claim.value_string %></td>
+                    <td><%= claim.value_item %></td>
+                    <td><%= claim.value_type %></td>
+                    <td><%= claim.datatype %></td>
+                      </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="pane8" class="tab-pane">
+          <div class="jumbotron">
+            <h3>Qualifiers</h3>
+
+
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th><ins>Claim ID</ins></th>
+                <th>Hash</th>
+                <th>Snaktype</th>
+                <th>Property</th>
+                <th>Value String</th>
+                <th>Value Item</th>
+                <th>Value type</th>
+                <th>Datatype</th>
+                <th>Order</th>
+                <th>Qualifiers order</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @qualifiers.each do |qualifier| %>
+                  <tr>
+                    <td><%= qualifier.claim_id %></td>
+                    <td><%= qualifier.hash_q %></td>
+                    <td><%= qualifier.snaktype %></td>
+                    <td><%= qualifier.property %></td>
+                    <td><%= qualifier.value_string %></td>
+                    <td><%= qualifier.value %></td>
+                    <td><%= qualifier.value_type %></td>
+                    <td><%= qualifier.datatype %></td>
+                    <td><%= qualifier.order %></td>
+                    <td><%= qualifier.qualifiers_order %></td>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div id="pane9" class="tab-pane">
+          <div class="jumbotron">
+            <h3>References</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Claim id</th>
+                <th><ins>Id</ins></th>
+                <th>Hash</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @references.each do |reference| %>
+                  <tr>
+                    <td><%= reference.claim_id %></td>
+                    <td><%= reference.id %></td>
+                    <td><%= reference.hash_r %></td>
+                     </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div id="pane10" class="tab-pane">
+          <div class="jumbotron">
+            <h3>References Snak</h3>
+            <table class="table table-hover">
+
+              <thead>
+              <tr>
+                <th><ins>Reference ID</ins></th>
+                <th>Snaktype</th>
+                <th>Property</th>
+                <th>Value string</th>
+                <th>Value item</th>
+                <th>Value type</th>
+                <th>Datatype</th>
+                <th>Order</th>
+                <th>Reference order</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @references_snaks2s.each do |references_snaks2| %>
+                  <tr>
+                    <td><%= references_snaks2.reference_id %></td>
+                    <td><%= references_snaks2.snaktype %></td>
+                    <td><%= references_snaks2.property %></td>
+                    <td><%= references_snaks2.value_string %></td>
+                    <td><%= references_snaks2.value_item %></td>
+                    <td><%= references_snaks2.value_type %></td>
+                    <td><%= references_snaks2.datatype %></td>
+                    <td><%= references_snaks2.order %></td>
+                    <td><%= references_snaks2.reference_order %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="pane11" class="tab-pane">
+          <div class="jumbotron">
+            <h3>Site Links</h3>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Entity ID </th>
+                <th>Site</th>
+                <th>Title</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @sitelinks.each do |sitelink| %>
+                  <tr>
+                    <td><%= sitelink.eid %></td>
+                    <td><%= sitelink.site %></td>
+                    <td><%= sitelink.title %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div><!-- /.tab-content -->
+    </div><!-- /.tabbable -->
+</div>
