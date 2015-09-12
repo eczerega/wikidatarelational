@@ -8,15 +8,20 @@
     i=0
     diferencia=0
     @referenceid=1
-    labelfile = File.open("csvF/labels.csv", "a")
-    quialifierfile = File.open("csvF/qualifiers.csv", "a")
-    claimfile = File.open("csvF/claims.csv", "a")
-    entitiesfile = File.open("csvF/entities.csv", "a")
-    descriptionsfile = File.open("csvF/descriptions.csv", "a")
-    aliasesfile = File.open("csvF/aliases.csv", "a")
-    linksitesfile = File.open("csvF/linksites.csv", "a")
-    referencesfile = File.open("csvF/references.csv", "a")
-    references_snakfile = File.open("csvF/references_snak.csv", "a")
+    labelfile = File.open("csv/labels.csv", "a")
+    quialifierfile = File.open("csv/qualifiers.csv", "a")
+    claimfile = File.open("csv/claims.csv", "a")
+    entitiesfile = File.open("csv/entities.csv", "a")
+    descriptionsfile = File.open("csv/descriptions.csv", "a")
+    aliasesfile = File.open("csv/aliases.csv", "a")
+    linksitesfile = File.open("csv/linksites.csv", "a")
+    referencesfile = File.open("csv/references.csv", "a")
+    references_snakfile = File.open("csv/references_snak.csv", "a")
+    def deletebadchar (string)
+      y= /[;\\\n]/
+      h = {';' => '&&!!!&&', '\\' => '%%%$%', '\n' => '%%$!$%'}
+      string.gsub(y,h).delete("\n").delete("\r")
+    end
 
     File.open("20150727.json", "r") do |f|
       f.each_line do |line|
@@ -27,6 +32,11 @@
           line.slice!(line.length-2,line.length)
           #Parsear json
           parsed = JSON.parse(line)
+
+
+
+          if parsed['id'].to_s== 'Q881468'
+          puts parsed.to_s
           #Limpiar variable correspondientes a las properties
           @property_datatype=''
           #Iterar sobre el json
@@ -50,16 +60,16 @@
               @property_datatype=parsed[values].to_s
             elsif values=='labels'
               parsed[values].keys.each do  |label|
-                labelfile <<  @id + ";" + parsed[values][label]['language'].to_s + ";" + parsed[values][label]['value'].to_s + "\n"
+                labelfile <<  @id + ";" + parsed[values][label]['language'].to_s + ";" + deletebadchar(parsed[values][label]['value'].to_s) + "\n"
               end
             elsif values=='descriptions'
                 parsed[values].keys.each do  |label|
-                  descriptionsfile << @id + ";" +  parsed[values][label]['language'].to_s + ";" + parsed[values][label]['value'].to_s + "\n"
+                  descriptionsfile << @id + ";" +  parsed[values][label]['language'].to_s + ";" + deletebadchar(parsed[values][label]['value'].to_s) + "\n"
                 end
             elsif values=='aliases'
               parsed[values].each do |aliase|
                 aliase[1].each do |content|
-                  aliasesfile << @id + ";" + content['language'].to_s + ";" + content['value'].to_s + "\n"
+                  aliasesfile << @id + ";" + content['language'].to_s + ";" + deletebadchar(content['value'].to_s) + "\n"
                 end
               end
             elsif values=='claims'
@@ -76,15 +86,15 @@
                     if @datatype=='wikibase-item'
                       @datavalue = 'Q'<< content['mainsnak']['datavalue']['value']['numeric-id'].to_s
                     else
-                      @datavalue_string = content['mainsnak']['datavalue']['value'].to_s
+                      @datavalue_string = deletebadchar(content['mainsnak']['datavalue']['value'].to_s)
                     end
                   rescue Exception => e
                     @datavalue_string = 'NO VALUE'
                   end
                   @claim_type = content['type']
                   @rank = content['rank']
-                    claimfile << @id + ";" +@claimid+";"+@claim_type+";"+@rank+";"+@snaktype+";"+@property+";"+@datavalue_string+ ";" +  @datavalue + ";" +  @datavalue_type + ";" + @datatype + "\n"
-
+                    claimfile << @id + ";" +@claimid+";"+@claim_type+";"+@rank+";"+@snaktype+";"+@property+";"+deletebadchar(@datavalue_string.to_s) + ";" +  @datavalue + ";" +  @datavalue_type + ";" + @datatype + "\n"
+                    puts deletebadchar(@datavalue_string.to_s)
                   #poner contador y estamos ready!
                   @counter =1
                   @positionh=1
@@ -114,7 +124,7 @@
                           rescue Exception => e
                             @qdatavalue_string = 'NO VALUEEEEEE!!!'
                           end
-                          quialifierfile << @claimid.to_s + ";" + @eid.to_s + @property + ";" + @qhash.to_s + ";" + @qsnaktype.to_s + ";" + @qproperty.to_s + ";" + @qdatavalue_string.to_s + ";" + @qdatavalue.to_s + ";"+ @qdatavalue_type.to_s + ";" + @qdatatype.to_s + ";" + @counter.to_s + ";" + @order_hash[qcontent['property']].to_s + "\n"
+                          quialifierfile << deletebadchar(@claimid.to_s) + ";" + @eid.to_s + @property + ";" + @qhash.to_s + ";" + @qsnaktype.to_s + ";" + @qproperty.to_s + ";" + deletebadchar(@qdatavalue_string.to_s) + ";" + @qdatavalue.to_s + ";"+ @qdatavalue_type.to_s + ";" + @qdatatype.to_s + ";" + @counter.to_s + ";" + @order_hash[qcontent['property']].to_s + "\n"
                            #seguir
                        #   Qualifier.create(claim_id:@claimid, eid: @eid,  pid: @property, hash_q: @qhash, snaktype: @qsnaktype, property: @qproperty, datatype: @qdatatype, value_string: @qdatavalue_string, value: @qdatavalue, order: @counter, value_type: @qdatavalue_type, qualifiers_order: @order_hash[qcontent['property']].to_i)
                           @counter= @counter+1
@@ -126,7 +136,7 @@
                   if !content['references'].nil?
                     content['references'].each do |reference|
                       @hash_r = reference['hash']
-                      referencesfile << @referenceid.to_s + ";" + @hash_r + ";" + @claimid + "\n"
+                      referencesfile << @referenceid.to_s + ";" + deletebadchar(@hash_r.to_s) + ";" + deletebadchar(@claimid.to_s) + "\n"
                       #@ref= Reference.create(hash_r: @hash_r, claim_id: @claimid)
                       @counters =1
                       @positions=1
@@ -152,9 +162,9 @@
                                 @datavalue_string_r = snak['datavalue']['value'].to_s
                               end
                             rescue Exception => e
-                              @datavalue_string_r = 'NO VALUEEEEEE!!!'
+                              @datavalue_string_r = ''
                             end
-                            references_snakfile <<  @referenceid.to_s + ";" + @snaktype_r.to_s + ";" + @property_r.to_s + ";" + @datavalue_string_r.to_s + ";" + @datavalue_r.to_s + ";" + @valuetype_r.to_s + ";" + @datatype_r.to_s + ";" + @counters.to_s + ";" + @order_snak[@property_r].to_s + "\n"
+                            references_snakfile <<  @referenceid.to_s + ";" + @snaktype_r.to_s + ";" + @property_r.to_s + ";" + deletebadchar(@datavalue_string_r.to_s) + ";" + @datavalue_r.to_s + ";" + @valuetype_r.to_s + ";" + @datatype_r.to_s + ";" + @counters.to_s + ";" + @order_snak[@property_r].to_s + "\n"
                             #ReferencesSnaks2.create(reference_id: @ref.id, snaktype: @snaktype_r, property: @property_r, value_string:  @datavalue_string_r, value_item:  @datavalue_r, value_type:  @valuetype_r, datatype: @datatype_r, order:@counters, reference_order:  @order_snak[@property_r].to_i)
                             @counters= @counters+1
 
@@ -180,6 +190,7 @@
               end
             end
           end
+
             entitiesfile << @id + ";" + @type + ";" + @property_datatype.to_s + "\n"
           if i%10000==0
             puts 'entidad:' + i.to_s
@@ -191,8 +202,12 @@
             CSV.open("csvF/graph.csv", "a") do |csv|
               csv << [ diff]
             end
-
           end
+          end
+
+
+
+
         rescue Exception => e
           CSV.open("csvF/error.csv", "a") do |csv|
             puts 'error'
@@ -204,5 +219,14 @@
       end
     end
     #Ver el tiempo que demoró
+    labelfile.close
+    quialifierfile.close
+    claimfile.close
+    entitiesfile.close
+    descriptionsfile.close
+    aliasesfile.close
+    linksitesfile.close
+    referencesfile.close
+    references_snakfile.close
     gets.chomp()
 
