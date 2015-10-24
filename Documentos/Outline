@@ -1,0 +1,59 @@
+Pasar dependencias al servidor -> Semi
+
+Consultas:
+Reescribir consultas
+
+
+Cuantas entities hay?
+	SELECT count (*) FROM entities; -> 18376549
+Cuantas  wiki-items en entities y cuantas son properties
+	SELECT COUNT (*) FROM entities WHERE id LIKE 'P%'; -> 1642
+MAX aliases x c/u x entities, item y properties
+SELECT MAX(counted) FROM (SELECT COUNT (*) AS counted AS counted FROM labels GROUP BY id) AS counts;
+	
+idem label, description
+
+
+Por cada lenguage cuántas entities hay?
+Cuantos idiomas hay x label, description, aliases?
+Numero de idiomas x cantidad de entities
+
+
+Cuantos claims hay
+Cuantos datatypes  hay de cada claim
+tamaño maximo, avg del value-type del string
+Contar rank, type
+Promedio de claims por item, maximo de claims por item
+Top 50 de entities cn mas claims
+Cuantas entidades tienen 1 claim, cuantas 2 y bla bla*
+promedio de claims que son wiki-item, wiki-property
+Cuantos claim de tipo wikitem tiene cada instancia (la misma consulta)*
+Cual es property q mas se repite
+un top 50 de properties
+
+
+Qualifiers
+Idem claims
+Cuantos hay por claim
+Cuantos por item
+Cuantos qualifier order son 
+
+
+Referencias:
+Cuantas hay en total
+Cuantas por claim
+maximo por claim
+promeio por claim
+Cuantos claim de tipo wikitem tiene cada instancia (la misma consulta)*
+
+Lo mismo de claims/qualifiers para references_snak
+
+
+
+//Consultas extras para regularizar las tablas
+SELECT claim_id, COUNT(*) FROM claims GROUP BY claim_id HAVING COUNT(*) > 1;
+DELETE FROM claims WHERE claim_id='Q15831604$1063ba94-409a-9bb7-c72e-abad36a77e73' OR claim_id='q633014$EC4BB0A2-5336-446E-BC91-CED48C8C2FF8';
+
+
+//
+Estas entities si  existen: Q3438276

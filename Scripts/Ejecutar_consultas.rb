@@ -1,8 +1,8 @@
 require 'pg'
 #version local
-conn = PG::Connection.open(:dbname => 'wikidata_v1')
+#conn = PG::Connection.open(:dbname => 'wikidata_v1')
 #version dcc uchile
-#conn = PG::Connection.open(:dbname => 'eczerega')
+conn = PG::Connection.open(:dbname => 'eczerega')
 answers = File.open("results.csv", "a")
 errors = File.open("results.csv", "a")
 consultas = File.open("consultas.txt", "r")
